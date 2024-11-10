@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dog Gallery</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <img id="dogImage" alt="My Dog">
+
+    <script>
+        const images = [
+            'images/dog1.jpg', 'images/dog2.jpg', 'images/dog3.jpg', 'images/dog4.jpg', 'images/dog5.jpg', 'images/dog6.jpg',
+            'images/dog7.jpg', 'images/dog8.jpg', 'images/dog9.jpg', 'images/dog10.jpg', 'images/dog11.jpg', 'images/dog12.jpg',
+            'images/dog13.jpg', 'images/dog14.jpg', 'images/dog15.jpg', 'images/dog16.jpg', 'images/dog17.jpg', 'images/dog18.jpg',
+            'images/dog19.jpg', 'images/dog20.jpg', 'images/dog21.jpg', 'images/dog22.jpg', 'images/dog23.jpg', 'images/dog24.jpg',
+            'images/dog25.jpg', 'images/dog26.jpg', 'images/dog27.jpg', 'images/dog28.jpg', 'images/dog29.jpg', 'images/dog30.jpg',
+            'images/dog31.jpg', 'images/dog32.jpg', 'images/dog33.jpg', 'images/dog34.jpg', 'images/dog35.jpg', 'images/dog36.jpg',
+            'images/dog37.jpg', 'images/dog38.jpg', 'images/dog39.jpg', 'images/dog40.jpg', 'images/dog41.jpg', 'images/dog42.jpg',
+            'images/dog43.jpg', 'images/dog44.jpg', 'images/dog45.jpg', 'images/dog46.jpg', 'images/dog47.jpg', 'images/dog48.jpg',
+            'images/dog49.jpg', 'images/dog50.jpg', 'images/dog51.jpg', 'images/dog52.jpg', 'images/dog53.jpg', 'images/dog54.jpg',
+            'images/dog55.jpg', 'images/dog56.jpg'
+        ];
+
+        let availableImages = shuffleArray([...images]);
+        const dogImage = document.getElementById('dogImage');
+
+        // Set a random initial image
+        const initialImageIndex = Math.floor(Math.random() * availableImages.length);
+        dogImage.src = availableImages.splice(initialImageIndex, 1)[0];
+
+        dogImage.addEventListener('click', () => {
+            if (availableImages.length === 0) {
+                availableImages = shuffleArray([...images]);
+            }
+            const newImage = availableImages.shift();
+            dogImage.src = newImage;
+        });
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+</body>
+</html>
